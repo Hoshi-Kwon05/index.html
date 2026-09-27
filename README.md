@@ -1257,4 +1257,295 @@ onclick="nextPage(5)"
 
 function balloonAnswer(number) {
 
-    const r
+    const result =
+        document.getElementById(
+            "balloonResult"
+        );
+
+    if (number === 999) {
+
+        result.innerHTML =
+            "BALLOONSSS. 🎈🎈🎈";
+
+        balloonExplosion();
+
+        setTimeout(function() {
+
+            nextPage(7);
+
+        }, 2800);
+
+    } else {
+
+        result.textContent =
+            "jema ka dae, ang pinaka daghan pilia. 😭";
+    }
+}
+
+
+function balloonExplosion() {
+
+    const balloons = [
+        "🎈","🎈","🎈","🎈","🎈",
+        "🎈","🎈","🎈","🎈","🎈",
+        "🎈","🎈","🎈","🎈","🎈",
+        "🎈","🎈","🎈","🎈","🎈"
+    ];
+
+    balloons.forEach(function(
+        balloon,
+        index
+    ) {
+
+        setTimeout(function() {
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+            element.className =
+                "balloon-confetti";
+
+            element.textContent =
+                balloon;
+
+            element.style.left =
+                Math.random() * 100 + "%";
+
+            element.style.setProperty(
+                "--side",
+                (Math.random() * 300 - 150)
+                + "px"
+            );
+
+            element.style.setProperty(
+                "--rotate",
+                (Math.random() * 360 - 180)
+                + "deg"
+            );
+
+            element.style.fontSize =
+                (28 + Math.random() * 28)
+                + "px";
+
+            document.body.appendChild(
+                element
+            );
+
+            setTimeout(function() {
+
+                element.remove();
+
+            }, 3200);
+
+        }, index * 70);
+
+    });
+}
+
+
+/* =========================
+   HEART BURST
+========================= */
+
+function heartBurst() {
+
+    for (let i = 0; i < 14; i++) {
+
+        const heart =
+            document.createElement(
+                "div"
+            );
+
+        heart.className =
+            "heart";
+
+        heart.textContent =
+            ["♡", "♥", "✦", "✧"][
+                Math.floor(
+                    Math.random() * 4
+                )
+            ];
+
+        heart.style.left = "50%";
+        heart.style.top = "50%";
+
+        document.body.appendChild(
+            heart
+        );
+
+        setTimeout(function() {
+
+            const x =
+                (Math.random() - 0.5) * 320;
+
+            const y =
+                (Math.random() - 0.5) * 320;
+
+            heart.style.transform =
+                "translate(" +
+                x +
+                "px," +
+                y +
+                "px)";
+
+            heart.style.opacity = "0";
+
+        }, 30);
+
+        setTimeout(function() {
+
+            heart.remove();
+
+        }, 1100);
+
+    }
+}
+
+
+/* =========================
+   STAR-ONLY CONFETTI
+========================= */
+
+function createConfetti() {
+
+    const symbols = [
+        "★",
+        "☆",
+        "✦",
+        "✧",
+        "⋆",
+        "✩"
+    ];
+
+    const colors = [
+        "#d596b3",
+        "#a99bd0",
+        "#e3ca75",
+        "#a9c9e5"
+    ];
+
+    for (
+        let i = 0;
+        i < 70;
+        i++
+    ) {
+
+        const piece =
+            document.createElement(
+                "div"
+            );
+
+        piece.className =
+            "confetti";
+
+        piece.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+        piece.style.left =
+            Math.random() * 100 +
+            "vw";
+
+        piece.style.color =
+            colors[
+                Math.floor(
+                    Math.random() *
+                    colors.length
+                )
+            ];
+
+        piece.style.fontSize =
+            (10 + Math.random() * 18) +
+            "px";
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 3) +
+            "s";
+
+        document.body.appendChild(
+            piece
+        );
+
+        setTimeout(function() {
+
+            piece.remove();
+
+        }, 5500);
+
+    }
+}
+
+
+/* =========================
+   FINAL CHAOS
+========================= */
+
+function finalChaos() {
+
+    createConfetti();
+
+    heartBurst();
+
+    setTimeout(
+        createConfetti,
+        500
+    );
+
+    setTimeout(
+        heartBurst,
+        800
+    );
+
+    setTimeout(
+        createConfetti,
+        1200
+    );
+
+    setTimeout(
+        heartBurst,
+        1500
+    );
+
+    document.getElementById(
+        "final"
+    ).innerHTML = `
+
+        <div class="final-box">
+
+            🎉 OFFICIAL RESULT 🎉
+
+            <br><br>
+
+            Hart has successfully survived
+            another year.
+
+            <br><br>
+
+            A diva.
+            <br>
+            An Icon.
+
+            <br><br>
+
+            HAPPY BIRTHDAY, HARTTT!
+
+        </div>
+
+    `;
+}
+/* =========================
+   START
+========================= */
+
+nextPage(1);
+
+</script>
+
+</body>
+</html>
